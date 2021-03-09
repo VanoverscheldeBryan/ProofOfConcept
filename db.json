@@ -1,0 +1,52 @@
+{
+  "products": [
+  
+
+    {
+      "id" : 1,
+      "name": "Audi A3 V1",
+      "description": "Lorem ipsum dolor sit consectetur elit. Aenean iaculis malesuada cursus. Nullam vitae nulla fringilla ligula iaculis ultricies",
+      "imageUrl": "https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg",
+      "price": 250
+    },
+    {
+      "id" : 2,
+      "name": "Audi A3 V2",
+      "description": "Nulla posuere ac odio et vulputate. Sed porttitor arcu id ex mattis tincidunt. Aenean eget dapibus mi, sed faucibus orci. Nullam luctus egestas arcu, eget rutrum ipsum placerat consequat. Fusce pharetra velit eu ex fringilla, ut eleifend metus dictum. Duis ut lorem vel risus",
+      "imageUrl": "https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg",
+      "price": 299
+    },
+    {
+      "id" : 3,
+      "name": "Audi A3 V3",
+      "description": "fringilla volutpat. Maecenas quam neque, porta sed ipsum sit amet, tristique faucibus elit. Nullam ultricies ultricies ligula, id sagittis lectus condimentum",
+      "imageUrl": "https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg",
+      "price": 350
+    },
+    {
+      "id" : 4,
+      "name": "Audi A3 V4",
+      "description": "In lacus lorem, mollis non finibus in, ullamcorper vitae erat. Nam commodo leo sed mattis dignissim. Sed elit purus, vehicula vel leo et, commodo eleifend lacus. Aenean consectetur imperdiet mattis.",
+      "imageUrl": "https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg",
+      "price": 400
+    }
+  ],
+  "cart": [],
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
