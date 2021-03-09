@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http'
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,7 +21,9 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import {NgProgressModule} from 'ngx-progressbar';
 import { AccountComponent } from './components/shared/nav/account/account.component';
-import { SettingsComponent } from './components/shared/nav/settings/settings.component'
+import { SettingsComponent } from './components/shared/nav/settings/settings.component';
+import { ProductItemDetailsComponent } from './components/shopping-cart/product-items/product-item/product-item-details/product-item-details.component'
+import { AuthService } from './shared/services/auth.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ import { SettingsComponent } from './components/shared/nav/settings/settings.com
     ProductItemComponent,
     HomeComponent,
     AccountComponent,
-    SettingsComponent
+    SettingsComponent,
+    ProductItemDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { SettingsComponent } from './components/shared/nav/settings/settings.com
     AuthModule,
     NgbModule,
     RouterModule,
-    NgProgressModule
+    NgProgressModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

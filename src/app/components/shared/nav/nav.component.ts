@@ -20,11 +20,9 @@ export class NavComponent implements OnInit {
     
   }
 
-  onClickMe(){
-    console.log("pressed")
-    localStorage.clear()
-    this.router.navigate(['/']);
-    location.reload()
+  logout(){ 
+
+    this.authService.logout()
   }
 
 

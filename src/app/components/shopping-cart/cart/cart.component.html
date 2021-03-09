@@ -1,12 +1,17 @@
-<!-- <ul class="list-group">
-    <li class="list-group-item" *ngFor="let i of [1,2,3,4,5]">
-        <app-cart-items></app-cart-items>
+<div *ngIf='cartItems.length === 0' class="alert alert-info">Your cart is empty</div>
+<ul *ngIf="cartItems.length > 0" class="list-group">
+    <li class="list-group-item" *ngFor="let item of cartItems">
+        <app-cart-items [cartItem]="item"></app-cart-items>
     </li>
-</ul> -->
+
+    <li class="list-group-item active">
+        <strong>Total </strong> €{{cartTotal}}
+    </li>
+</ul>
 
 
-<div class="card mb-4 shadow-sm">
+<!-- <div class="card mb-4 shadow-sm">
     <p class="card-text pl-2">
         <strong><small class="text-muted">Empty Cart</small></strong>
     </p>
-</div>
+</div> -->

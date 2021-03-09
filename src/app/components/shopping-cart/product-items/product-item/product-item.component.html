@@ -1,15 +1,35 @@
 <div class="card mb-4 shadow-sm">
-    <img class="bd-placeholder-img card-img-top" width="100%" src="https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg">
+    <img class="bd-placeholder-img card-img-top " width="100%" [src]="productItem.imageUrl">
     <div class="card-body">
         <p class="card-text">
-            <strong><small class="text-muted">€14.999</small></strong>
+            <strong><small class="text-muted">€{{productItem.price}}</small></strong>
         </p>
-      <h5 class="card-text">Audi A3</h5>
+      <h5 class="card-text">{{productItem.name}}</h5>
 
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+      <h6 class="card-subtitle mb-2 text-muted">{{productItem.description | slice: 0:80 }} ...</h6>
       <div class="d-flex justify-content-between align-items-center">
-        <div class="btn-group">
+        <div   class="btn-group">
+          <button (click)="handleAddToCart()"  class="btn btn-sm btn-primary product-btn">Add to cart</button>
         </div>
-        <img class="" width="10%" src="http://www.pngall.com/wp-content/uploads/5/Shopping-Cart-PNG-Clipart.png">
+        
       </div>
     </div>
+
+
+
+<style>
+
+  .pointer{
+    cursor: pointer;
+  }
+
+  .hover:hover{
+    opacity: 75%;
+  }
+  .hoverBasket{
+    opacity: 50%;
+  }
+  .hoverBasket:hover{
+    opacity: 100;
+  }
+</style>

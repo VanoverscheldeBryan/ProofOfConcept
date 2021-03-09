@@ -2,16 +2,15 @@
 
 <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <h5 class="my-0 mr-md-auto font-weight-normal">
-    <a href="#" class="text-decoration-none">
+    <a class="text-decoration-none">
     <app-header></app-header>
   </a>
 </h5>
     <nav class="my-2 my-md-0 mr-md-3">
       <p></p>
-      <a *ngIf="!authService.show" class="p-2 text-dark" [routerLink]="['']" routerLinkActive="active">ProductList</a>
-      <a *ngIf="!authService.show" class="p-2 text-dark" [routerLink]="['account']" routerLinkActive="active">Account</a>
-      <a *ngIf="!authService.show" class="p-2 text-dark" [routerLink]="['settings']" routerLinkActive="active">Settings</a>
+      <a class="p-2 text-dark" [routerLink]="['shoppingCart']" routerLinkActive="active">ProductList</a>
+      <a  class="p-2 text-dark" [routerLink]="['account']" routerLinkActive="active">Account</a>
+      <a  class="p-2 text-dark" [routerLink]="['settings']" routerLinkActive="active">Settings</a>
     </nav>
-    <a class="btn btn-outline-primary" [routerLink]="['login']" routerLinkActive="active" *ngIf="authService.show">Log in</a>
-    <button (click)="authService.loggedOut()"class="btn btn-primary" *ngIf="!authService.show">Log Out <i class="fas fa-sign-in-alt" ></i></button>
+    <button (click)="logout()" class="btn btn-primary" >Log Out <i class="fas fa-sign-in-alt" ></i></button>
   </div>
