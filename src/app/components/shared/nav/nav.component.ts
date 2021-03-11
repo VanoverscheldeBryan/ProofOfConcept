@@ -16,13 +16,12 @@ export class NavComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.progressBar.progressRef = this.progress.ref('progressBar')
     
   }
 
   logout(){ 
 
-    this.authService.logout()
+    this.authService.logout();
   }
 
 

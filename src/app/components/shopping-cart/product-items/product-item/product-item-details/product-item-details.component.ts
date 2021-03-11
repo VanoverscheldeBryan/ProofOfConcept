@@ -24,11 +24,11 @@ export class ProductItemDetailsComponent implements OnInit {
   ngOnInit(): void {
    
     this.sub = this.router.paramMap.subscribe(params => {
-      this.id = params.get("id")
+      this.id = params.get("id");
     })
 
      this.productService.getProductById(this.id).subscribe((products) => {
-      this.product = products
+      this.product = products;
      }) 
 
   }

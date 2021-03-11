@@ -9,8 +9,8 @@ import { ProductItemDetailsComponent } from './components/shopping-cart/product-
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 const routes: Routes = [
-  {path: '', component: LoginComponent},
-  {path: 'shoppingCart', component: ShoppingCartComponent, canActivate : [AuthGuard]},
+  // {path: '', component: LoginComponent},
+  {path: '', component: ShoppingCartComponent, canActivate : [AuthGuard]},
   {path: 'account', component: AccountComponent, canActivate : [AuthGuard]},
   {path: 'settings', component: SettingsComponent, canActivate : [AuthGuard]},
   {path: 'product/:id', component: ProductItemDetailsComponent, canActivate : [AuthGuard]}

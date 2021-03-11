@@ -2,34 +2,15 @@
     <img class="bd-placeholder-img card-img-top " width="100%" [src]="productItem.imageUrl">
     <div class="card-body">
         <p class="card-text">
-            <strong><small class="text-muted">€{{productItem.price}}</small></strong>
+            <strong><small class="text-muted">{{productItem.price | currency:'EUR'}}</small></strong>
         </p>
       <h5 class="card-text">{{productItem.name}}</h5>
 
       <h6 class="card-subtitle mb-2 text-muted">{{productItem.description | slice: 0:80 }} ...</h6>
       <div class="d-flex justify-content-between align-items-center">
-        <div   class="btn-group">
-          <button (click)="handleAddToCart()"  class="btn btn-sm btn-primary product-btn">Add to cart</button>
-        </div>
+
         
       </div>
     </div>
 
 
-
-<style>
-
-  .pointer{
-    cursor: pointer;
-  }
-
-  .hover:hover{
-    opacity: 75%;
-  }
-  .hoverBasket{
-    opacity: 50%;
-  }
-  .hoverBasket:hover{
-    opacity: 100;
-  }
-</style>

@@ -19,11 +19,13 @@ import { CartItemsComponent } from './components/shopping-cart/cart/cart-items/c
 import { ProductItemComponent } from './components/shopping-cart/product-items/product-item/product-item.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import {NgProgressModule} from 'ngx-progressbar';
+import { NgProgressModule } from 'ngx-progressbar';
 import { AccountComponent } from './components/shared/nav/account/account.component';
 import { SettingsComponent } from './components/shared/nav/settings/settings.component';
 import { ProductItemDetailsComponent } from './components/shopping-cart/product-items/product-item/product-item-details/product-item-details.component'
 import { AuthService } from './shared/services/auth.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './components/shopping-cart/filters/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AuthService } from './shared/services/auth.service';
     HomeComponent,
     AccountComponent,
     SettingsComponent,
-    ProductItemDetailsComponent
+    ProductItemDetailsComponent,
+    FilterPipe,
+    
   ],
   imports: [
     BrowserModule,
@@ -49,7 +53,9 @@ import { AuthService } from './shared/services/auth.service';
     NgbModule,
     RouterModule,
     NgProgressModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
+
     
   ],
   providers: [],

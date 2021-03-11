@@ -6,64 +6,50 @@ import { SignInData } from 'src/app/models/signInData';
   providedIn: 'root'
 })
 export class AuthService {
-
-  private readonly mockedUser = new SignInData("bryan@hotmail.com", "123")
-  isAuthenticated = false
+  private readonly mockedToken = "abcd"
+  private readonly mockedUser = new SignInData("b", "b")
+  public isAuthenticated = false
 
   constructor(private router: Router){
 
   }
+
+
   authenticate(signInData: SignInData): boolean {
     if(this.checkCredentials(signInData)){
-      this.isAuthenticated = true
-      this.router.navigate(['shoppingCart'])
-      return true
+      
+      this.setToken(this.mockedToken)
+
+      return true;
     }
-    this.isAuthenticated = false
-    return false
+
+    this.isAuthenticated = false;
+    return false;
   }
+
+  setToken(token) {
+    this.isAuthenticated = true;  
+    localStorage.setItem('ACCESS_TOKEN', token);
+}
+
   private checkCredentials(signInData : SignInData) : boolean{
-    return this.checkUserName(signInData.getEmail()) && this.checkPassword(signInData.getPassword())
+    return this.checkUserName(signInData.getEmail()) && this.checkPassword(signInData.getPassword());
   }
 
   private checkUserName(email: string): boolean{
-    return email === this.mockedUser.getEmail()
+    return email === this.mockedUser.getEmail();
   }
   private checkPassword(password: string): boolean{
-    return password === this.mockedUser.getPassword()
+    return password === this.mockedUser.getPassword();
   }
 
 
   logout(){
 
     this.isAuthenticated = false
-    this.router.navigate([''])
+    localStorage.clear()
+    this.router.navigate(['login'])
   }
-  // show = true;
-  // constructor(private router: Router) { }
 
-
-  // loggedIn(){
-  //   setTimeout(()=>{
-
-  //   const token = localStorage.getItem('username')
-  //   if(token === 'Bryan'){
-  //     this.show = !this.show
-  //     this.router.navigate(['/shoppingCart']);
-  //     console.log('loggedIn')
-
-      
-  //   }
-  // }, 3000);
-  // }
-  
-  
-  // loggedOut(){
-  //   console.log("loggedOut")
-  //   localStorage.clear()
-  //   this.show = !this.show
-  //   this.router.navigate(['']);
-  //   // location.reload()
-  // }
   }
 

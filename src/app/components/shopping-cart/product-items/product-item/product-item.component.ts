@@ -16,6 +16,6 @@ export class ProductItemComponent implements OnInit {
   }
 
   handleAddToCart(){
-    this.addToCart.sendMsg(this.productItem)
+    this.addToCart.sendMsg(this.productItem);
   }
 }

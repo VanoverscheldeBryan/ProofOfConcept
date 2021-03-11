@@ -1,18 +1,14 @@
 <div class="card">
-    <div class="card-header"><strong>Filters</strong></div>
+    <div class="card-header"><strong>Price Filter</strong></div>
 <div class="card-body">
     <form>
         <div class="form-group">
-            <label for="from">From</label>
-            <input type="number" id="from" class="form-control">
+            <label for="from">Max</label>
+            <input type="string " id="from" class="form-control"
+                 
+            (keyup)="filterProduct$.next($event.target.value)"
+            [value]="filterProductName">
         </div>
-    
-        <div class="form-group">
-            <label for="to">To</label>
-            <input type="number" id="to" class="form-control">
-        </div>
-    
-        <button class="btn btn-primary btn-block btn-sm">Filter by price</button>
-    </form>
+        </form>
 </div>
 </div>

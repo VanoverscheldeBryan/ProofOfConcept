@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http'
-import { Observable} from 'rxjs'
+import {HttpClient,HttpErrorResponse,HttpParams} from '@angular/common/http'
+import { Observable, throwError} from 'rxjs'
 import {Product} from '../models/product'
+import {catchError, map } from 'rxjs/operators';
+
 
 const apiUrl = 'http://localhost:3000/products' //later in een file steken dat je kan importen
 
@@ -10,24 +12,39 @@ const apiUrl = 'http://localhost:3000/products' //later in een file steken dat j
 })
 export class ProductService {
 
-  // products: Product[] = [
-  //   new Product(1, 'Audi A3 V1', 'Dit is een lange beschrijving om een lange beschrijving weer te geven', 100),
-  //   new Product(2, 'Audi A3 V2', 'Dit is een lange beschrijving om een lange beschrijving weer te geven', 150),
-  //   new Product(3, 'Audi A3 V3', 'Dit is een lange beschrijving om een lange beschrijving weer te geven', 180)
-
-  // ]
 
   constructor(private http: HttpClient) { }
 
   getProducts() : Observable<Product[]> {
-    return this.http.get<Product[]>(apiUrl)
+    return this.http.get<Product[]>(apiUrl);
   }
   
   getProductById(idInt: String):Observable<Product>{
-    const url = `http://localhost:3000/products/${idInt}`
-    return this.http.get<Product>(url)
-    // return this.products.find(x => x.id == +idInt)
+    const url = `http://localhost:3000/products/${idInt}`;
+    return this.http.get<Product>(url);
   }
- 
 
+
+  fetchProducts$(price?: string) {
+    let params = new HttpParams();
+    params = price ? params.append('price', price) : params;
+    return this.http.get<Product[]>(apiUrl, { params }).pipe(
+      catchError(this.handleError),
+      map((list: any[]): Product[] => list.map(Product.fromJSON))
+    );
+  }
+
+ 
+  handleError(err: any): Observable<never> {
+    let errorMessage: string;
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else if (err instanceof HttpErrorResponse) {
+      console.log(err);
+      errorMessage = `'${err.status} ${err.statusText}' when accessing '${err.url}'`;
+    } else {
+      errorMessage = err;
+    }
+    return throwError(errorMessage);
+  }
 }
