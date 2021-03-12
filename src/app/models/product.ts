@@ -23,7 +23,7 @@ export class Product {
 
     }
 
-    static fromJSON(json: Product): Product {
+    static fromJSON(json: ProductJson): Product {
         const prod = new Product(
           json.id,
           json.name,

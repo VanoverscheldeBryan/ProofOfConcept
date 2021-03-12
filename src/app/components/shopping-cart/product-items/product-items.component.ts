@@ -28,14 +28,10 @@ export class ProductItemsComponent implements OnInit {
     //   this.productList = products;
     // })
 
-    this.filterProduct$.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(val => {
-      const params = val ? {queryParams : {filter: val}}: undefined
-      this.router.navigate([''], params);
-    })
 
     this._route.queryParams.subscribe(params => {
       this.productService
-        .fetchProducts$(params['filter'])
+        .filterProductsByPrice$(params['filter'])
         .pipe(
           catchError((err) => {
             this.errorMessage = err;
@@ -47,15 +43,6 @@ export class ProductItemsComponent implements OnInit {
         this.filterProductName = params['filter'];
       }
     });
-  }
-
-  
-  applyFilter(filter: string) {
-    this.filterProductName = filter;
-  }
-
-  get products$(): Observable<Product[]> {
-    return this._fetchProducts$;
   }
 
 

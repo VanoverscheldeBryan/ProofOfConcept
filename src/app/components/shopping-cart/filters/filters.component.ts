@@ -20,7 +20,7 @@ export class FiltersComponent implements OnInit {
   public productList: Product[] = [];
 
 
-  constructor(private productService: ProductService, private router: Router, private _route: ActivatedRoute) { }
+  constructor(private router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -28,30 +28,10 @@ export class FiltersComponent implements OnInit {
       const params = val ? {queryParams : {filter: val}}: undefined
       this.router.navigate([''], params);
     })
-  
-    this._route.queryParams.subscribe(params => {
-      this.productService
-        .fetchProducts$(params['filter'])
-        .pipe(
-          catchError((err) => {
-            this.errorMessage = err;
-            return EMPTY;
-          })
-        )
-        .subscribe(val => (this.productList = val));
-      if (params['filter']) {
-        this.filterProductName = params['filter'];
-      }
-    });
+
   
   }
-  // applyFilter(filter: string) {
-  //   this.filterProductName = filter;
-  // }
 
-  // get products$(): Observable<Product[]> {
-  //   return this._fetchProducts$;
-  // }
 
 
 }
