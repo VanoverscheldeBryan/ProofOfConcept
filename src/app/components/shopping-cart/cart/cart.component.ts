@@ -1,7 +1,12 @@
 import { ThrowStmt } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import {AddToCartService} from 'src/app/services/add-to-cart.service'
+
+export interface Post {
+  title:string;
+  content:string;
+}
 
 @Component({
   selector: 'app-cart',
@@ -11,46 +16,24 @@ import {AddToCartService} from 'src/app/services/add-to-cart.service'
 export class CartComponent implements OnInit {
 
 
-  cartItems = [
-  ]
-
-  cartTotal = 0
-
-  constructor(private addToCart : AddToCartService) { }
 
   ngOnInit(): void {
-    
-
-    this.addToCart.getMsg().subscribe((product: Product) =>{
-    this.addProductToCart(product)
-  })
-
-
-
-}
-addProductToCart(product: Product){
-  let productExists = false
-
-  for (let i in this.cartItems){
-    if (this.cartItems[i].productId === product.id){
-      this.cartItems[i].quantity++
-      productExists = true
-      break
-    }
   }
 
-  if(!productExists){
-  this.cartItems.push({
-    productId : product.id,
-    productName: product.name,
-    quantity : 1,
-    price: product.price
-  })
+  public post:Post; 
+
+  @Output() postCreated = new EventEmitter<Post>();
+
+  constructor() {
+    this.post = {} as Post;
   }
 
-this.cartTotal = 0
-this.cartItems.forEach(item => {
-  this.cartTotal += (item.quantity * item.price)
-})
-}
+  onAddPost(){
+    const post = {
+      title: this.post.title,
+      content: this.post.content
+    };
+    this.postCreated.emit(post);
+  }
+
 }

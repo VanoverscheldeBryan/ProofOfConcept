@@ -7,7 +7,11 @@
     </div>
 
     <div class="col">
-        <app-cart></app-cart>
+        <app-cart (postCreated)="onPostAdded($event)" ></app-cart> 
+        <!-- Dit is de replacement voor de shoppingCart ^, hier wordt een eventEmitter gebruikt om een Title & Content te versturen met de naam 'post'-->
+        <div class="dropdown-divider"></div>
+        <app-post-list-component [posts]="storedPosts"></app-post-list-component>
+        <!-- Hier wordt het event 'post' opgevangen nadat het gepushed is door de parent component(deze) & wordt daarna in een list gestoken^ -->
     </div>
 
 </div>

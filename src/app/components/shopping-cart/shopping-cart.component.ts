@@ -12,4 +12,10 @@ export class ShoppingCartComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  storedPosts = []
+
+  onPostAdded(event) {
+    this.storedPosts.push(event);
+  }
+
 }

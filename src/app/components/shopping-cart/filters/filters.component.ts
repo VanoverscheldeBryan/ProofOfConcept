@@ -11,8 +11,12 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./filters.component.sass']
 })
 export class FiltersComponent implements OnInit {
-  public filterProductName: string = '';
-  public filterProduct$ = new Subject<string>();
+  public PriceMax: string = '';
+  public PriceMin: string = '';
+
+  public inputPriceMax$ = new Subject<string>();
+  public inputPriceMin$ = new Subject<string>();
+
   public errorMessage: string = '';
   private _fetchProducts$: Observable<Product[]>;
 
@@ -24,14 +28,22 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.filterProduct$.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(val => {
-      const params = val ? {queryParams : {filter: val}}: undefined
-      this.router.navigate([''], params);
+    this.inputPriceMax$.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(val => {
+      this.PriceMax = val;
+      this.updateQueryParams();
+
+    })
+    this.inputPriceMin$.pipe(distinctUntilChanged(), debounceTime(250)).subscribe(val => {
+      this.PriceMin = val;
+      this.updateQueryParams();
     })
 
   
   }
 
-
+  updateQueryParams(){
+    const params = {queryParams : {filterMax: this.PriceMax, filterMin : this.PriceMin}};
+    this.router.navigate([''], params);
+  }
 
 }

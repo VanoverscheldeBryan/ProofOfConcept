@@ -20,7 +20,8 @@ export class ProductService {
   getProducts() : Observable<Product[]> {
     return this.http.get<Product[]>(apiUrl).pipe(
       catchError(this.handleError),
-      map((list: any[]): Product[] => list.map(Product.fromJSON)))
+      map((list: any[]): Product[] => list.map(Product.fromJSON)));
+      
   }
   
   getProductById(idInt: String):Observable<Product>{
@@ -29,27 +30,21 @@ export class ProductService {
   }
 
 
-  fetchProducts$(price?: string) {
-    let params = new HttpParams();
-    params = price ? params.append('price', price) : params;
-    return this.http.get<Product[]>(apiUrl, { params }).pipe(
-      catchError(this.handleError),
-      map((list: any[]): Product[] => list.map(Product.fromJSON))
-    );
-  }
 
-  filterProductsByPrice$(maxPrice: number): Observable<Product[]>{
+  filterProductsByPrice$(products:Product[], maxPrice: number, minPrice : number): Product[]{
+    var results = products
+
+    if (Number.isInteger(maxPrice)) {
+      results = results.filter(product => product.price <= maxPrice);
+    }
+    if (Number.isInteger(minPrice)) {
+      results = results.filter(product => product.price >= minPrice);
+    }
     
-    return this.getProducts().pipe(filter(x => x.price <= maxPrice)
-    );
-
-    // let newArr = array.pipe(filter(e => e[0].price < maxPrice))
-    // map((list: any[]): Product[] => list.map(Product.fromJSON))
+    return results;
+    
 
   }
-
-  
-
  
   handleError(err: any): Observable<never> {
     let errorMessage: string;

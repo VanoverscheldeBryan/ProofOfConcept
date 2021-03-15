@@ -24,8 +24,9 @@ import { AccountComponent } from './components/shared/nav/account/account.compon
 import { SettingsComponent } from './components/shared/nav/settings/settings.component';
 import { ProductItemDetailsComponent } from './components/shopping-cart/product-items/product-item/product-item-details/product-item-details.component'
 import { AuthService } from './shared/services/auth.service';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FilterPipe } from './components/shopping-cart/filters/filter.pipe';
+import { PostListComponentComponent } from './components/shopping-cart/cart/post-list-component/post-list-component.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { FilterPipe } from './components/shopping-cart/filters/filter.pipe';
     SettingsComponent,
     ProductItemDetailsComponent,
     FilterPipe,
+    PostListComponentComponent,
     
   ],
   imports: [
@@ -54,7 +56,8 @@ import { FilterPipe } from './components/shopping-cart/filters/filter.pipe';
     RouterModule,
     NgProgressModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
 
     
   ],

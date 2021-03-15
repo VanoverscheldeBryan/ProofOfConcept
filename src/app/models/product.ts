@@ -7,31 +7,39 @@ interface ProductJson {
   }
 
 export class Product {
-    
-    id: number;
-    name: string;
-    description: string;
-    price: number;
-    imageUrl: string;
+  private _id: number;
 
-    constructor(id, name, description= '', price = 0, imageUrl = 'https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg'){
-        this.id = id;
-        this.name= name;
-        this.description = description;
-        this.price = price;
-        this.imageUrl = imageUrl;
 
+    constructor(private _name, private _description= '',private _price = 0, private _imageUrl = 'https://cdn.jdpower.com/JDPA_2020%20Audi%20A3%20Dark%20Gray%20Front%20View.jpg'){
     }
 
     static fromJSON(json: ProductJson): Product {
         const prod = new Product(
-          json.id,
           json.name,
           json.description,
           json.price,
           json.imageUrl,
         );
-        prod.id = json.id;
+        prod._id = json.id;
         return prod;
       }
+
+      get id(): number {
+        return this._id;
+      }
+      get name(): string{
+        return this._name
+      }
+      get description(): string{
+        return this._description
+      }
+          
+      get price(): number{
+        return this._price
+      }
+
+      get imageUrl(): string{
+        return this._imageUrl
+      }
+
 }

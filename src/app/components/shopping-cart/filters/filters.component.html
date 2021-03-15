@@ -6,8 +6,13 @@
             <label for="from">Max</label>
             <input type="string " id="from" class="form-control"
                  
-            (keyup)="filterProduct$.next($event.target.value)"
-            [value]="filterProductName">
+            (keyup)="inputPriceMax$.next($event.target.value)"
+            [value]="PriceMax">
+            <label for="from">Min</label>
+            <input type="string " id="from" class="form-control"
+                 
+            (keyup)="inputPriceMin$.next($event.target.value)"
+            [value]="PriceMin">
         </div>
         </form>
 </div>

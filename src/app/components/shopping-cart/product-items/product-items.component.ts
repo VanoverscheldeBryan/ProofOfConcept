@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EMPTY, Observable, Subject } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { catchError, debounceTime, distinctUntilChanged, max } from 'rxjs/operators';
 import { Product } from 'src/app/models/product';
 import {ProductService} from 'src/app/services/product.service'
 
@@ -11,10 +11,13 @@ import {ProductService} from 'src/app/services/product.service'
   styleUrls: ['./product-items.component.sass']
 })
 export class ProductItemsComponent implements OnInit {
-  public filterProductName: string = '';
+  public filterProductPriceMax: string = '';
   public filterProduct$ = new Subject<string>();
   public errorMessage: string = '';
   private _fetchProducts$: Observable<Product[]>;
+  public allProducts :  Observable<Product[]>
+  public maxPrice = 0
+  public minPrice = 0
 
 
 
@@ -24,25 +27,28 @@ export class ProductItemsComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    // this.productService.getProducts().subscribe((products) => {
-    //   this.productList = products;
-    // })
+  
 
+    this.allProducts = this.productService.getProducts()
 
     this._route.queryParams.subscribe(params => {
-      this.productService
-        .filterProductsByPrice$(params['filter'])
-        .pipe(
-          catchError((err) => {
-            this.errorMessage = err;
-            return EMPTY;
-          })
-        )
-        .subscribe(val => (this.productList = val));
-      if (params['filter']) {
-        this.filterProductName = params['filter'];
-      }
+      this.maxPrice = +params.filterMax;
+      this.minPrice = +params.filterMin;
+
+
+        this.allProducts
+        .subscribe(val => {
+          this.productList = val;
+          
+          this.productList = this.productService.filterProductsByPrice$(this.productList, this.maxPrice, this.minPrice);
+
+
+        });
+      
     });
+
+    
+
   }
 
 
